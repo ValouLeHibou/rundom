@@ -1,3 +1,82 @@
+# Module - Rundom
+
+<img src='https://img.shields.io/static/v1?label=WebRTC&message=workInProgress&color=red' alt="funnewstechnologie">
+<img src='https://img.shields.io/static/v1?label=Firebase&message=firestore&color=Yellow' alt="funnewstechnologie">
+<img src='https://img.shields.io/static/v1?label=Materializecss&message=1.02&color=orange' alt="funnewstechnologie">
+
+Final Project
+
+```
+____________________ ____   ____    ________   .__    ____  .__   __           .__    
+\_   _____/\_   ___ \\   \ /   /    \______ \  |__|  / ___\ |__|_/  |_ _____   |  |   
+|    __)_ /    \  \/ \   Y   /      |    |  \ |  | / /_/  >|  |\   __\\__  \  |  |   
+|        \\     \____ \     /       |    `   \|  | \___  / |  | |  |   / __ \_|  |__
+/_______  / \______  /  \___/       /_______  /|__|/_____/  |__| |__|  (____  /|____/
+\/         \/                       \/                              \/
+```
+
+## Primal Objectives
+
+Rundom was a simple full random video chat like chat roulette but with the P2P WebRTC technologie.
+
+<img src='https://blog.wildix.com/wp-content/uploads/2016/11/webrtc-logo-vert-retro-255x305-1-251x300.png' alt="WebRTC">
+
+## Descovering the WebRTC technologie
+
+WebRTC is beginning to be a great technologie however it's very young.
+The first thing I have done is to find a basic tutorial for beginners and I found it on the WebRTC code lab: `https://webrtc.org/getting-started/firebase-rtc-codelab`
+
+It explain how to set up a peer to peer connection but the tutorial has many comprehension problems that obligate me to use a fork to start coding.
+`https://github.com/webrtc/FirebaseRTC/issues/3`
+
+<img src='https://www.gstatic.com/devrel-devsite/prod/v2235b5d368461352e70596bb19ab24ef2806562cf010ceb9beccdf03cc0b1754/firebase/images/touchicon-180.png' alt="firebase">
+
+Finaly I was able to run my first video chat with ... myself yeah !
+
+Next step was to undertand correcty the code and try to allow multi connection - Deconnection/Reconnection - Random video chat acces.
+
+For the room, i'm using the Firebase fireStore to store room ID
+
+<img src='./public/firestore.png' alt="firestore">
+
+After many hours, I was able to display a correct ramdom video chat :
+
+`URL : https://fir-rtc-937e1.web.app/`
+
+<img src='./public/video.png' alt="firestore">
+
+## How it works :
+
+First you need to open with the button your webcam and mics.
+This button call an `async openUserMedia function` that acces to your `{video: true, audio: true}` and put them into a `stream` variable.
+
+Next you need to choose if you want to host (boutton créer ma room) or to go into a room (Let's rundom).
+Hosting room create an `offer` with the `createRoom` function. This offer is linked by an `id` in the `firehost` and used in the `callbyId` fucntion. The callee gonna call this id and give to the hoster an `offer` too.
+
+Finaly the callee can click on the next button and disconnect to be reconnected to another room Id.
+
+
+### Run the project
+
+``
+ID Projet Firebase : fir-rtc-937e1
+``
+
+```
+# Deploy on Firebase
+$ firebase deploy
+
+# Run local firebase
+$ firebase serve --only hosting
+```
+
+
+
+
+# WebRTC problems Doc :
+
+- Evolution of the technologie = Depreciate code
+
 # Firebase + WebRTC Codelab
 
 ### Full code solution can be found under the branch: [_solution_](https://github.com/meldaravaniel/FirebaseRTC/tree/solution)
